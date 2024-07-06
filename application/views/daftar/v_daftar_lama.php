@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +24,6 @@
   <link rel="stylesheet" href="<?php echo base_url();?>assets/css/style.css">
   <link rel="stylesheet" href="<?php echo base_url();?>assets/css/components.css">
 
-
   <style>
     body {
       padding: 0;
@@ -44,6 +44,10 @@
     }
     tr{
         height:30px;
+    }
+    .inline-flex {
+      display: inline-flex !important;
+      margin: .5em !important;
     }
 
    /* Base styles for button */
@@ -107,7 +111,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 50%; /* Set height for the content section */
+    height: 60%; /* Set height for the content section */
     background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for text */
     padding: 10px;
     box-sizing: border-box;
@@ -223,7 +227,7 @@
   <script src="<?php echo base_url();?>assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
   <script src="<?php echo base_url();?>assets/modules/select2/dist/js/select2.full.min.js"></script>
   <script src="<?php echo base_url();?>assets/modules/jquery-selectric/jquery.selectric.min.js"></script>
-  <script src="<?php echo base_url();?>assets/modules/sweetalert/sweetalert.min.js"></script>
+  <script src="<?php echo base_url();?>assets/modules/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
 
   <script>
   <?php 

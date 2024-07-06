@@ -41,12 +41,96 @@ class m_daftar extends CI_Model {
             return $query->result();
     }
 
+    public function cek_kunj($pasien_id)
+    {
+        $hariini = date('Y-m-d');
+        $query = $this->db->query("SELECT * FROM b_kunjungan WHERE pasien_id = '$pasien_id' AND DATE(tgl) = '$hariini'");
+            return $query->result();
+    }
+
     public function cek_dokter($hariini)
     {
-        $query = $this->db->query(" SELECT mjd.*, u.nama AS nama_dokter, mu.nama AS nama_unit, (CASE WHEN jld.id IS NULL THEN 'Tidak libur' ELSE 'Libur' END) AS indikator_jadwal
+        $query = $this->db->query("SELECT mjd.*, u.nama AS nama_dokter,u.id_unit as unit_id, mu.nama AS nama_unit, (CASE WHEN jld.id IS NULL THEN 'Tidak libur' ELSE 'Libur' END) AS indikator_jadwal
         FROM ms_jadwal_dokter mjd JOIN users u ON mjd.dokter_id = u.id_user JOIN b_ms_unit mu ON mjd.unit_id = mu.id 
         LEFT JOIN jadwal_libur_dokter jld ON mjd.id = jld.ms_jadwal_id AND DATE(jld.tgl_libur) = '$hariini' ORDER BY id ASC");
             return $query->result();
+    }
+
+    public function cek_antrian($dokter_id){
+        $hariini = date('Y-m-d');
+        $query = $this->db->query("SELECT (COUNT(id) + 1) AS antrian FROM b_pelayanan bp WHERE bp.dokter_id = '$dokter_id' AND DATE(bp.tgl) = '$hariini'");
+            return $query->result();
+    }
+
+    public function cek_antrian2($dokter_id,$hariini){
+        $query = $this->db->query("SELECT COUNT(id) AS antrian FROM b_pelayanan bp WHERE bp.dokter_id = '$dokter_id' AND DATE(bp.tgl) = '$hariini'");
+            return $query->result();
+    }
+
+    public function ceknobill(){
+        $query = $this -> db ->query("SELECT IFNULL(MAX(no_billing)+1,1) AS no_billing FROM b_kunjungan");
+        return $query->result();
+    }
+
+    public function cekbiayaumum(){
+        $query = $this -> db ->query("SELECT * FROM b_ms_tindakan bmt JOIN b_ms_tindakan_kelas mtk ON bmt.id = mtk.ms_tindakan_id WHERE bmt.id = 14");
+        return $query->result();
+    }
+
+    public function daftarpoli($no_rm,$dokter_id,$pasien_id,$kso_id,$tgl,$unit_id,$namadok,$hariini,$no_bill){
+        $arr = array(
+            'no_billing' =>$no_bill,
+            'pasien_id' => $pasien_id,
+            'jenis_layanan' => 1,
+            'unit_id' => $unit_id,
+            'tgl' => $tgl,
+            'kso_id' => $kso_id,
+            'tgl_act' => $hariini,
+            'user_act' => '61',
+            'pm' => 1
+        );
+        $data = $this->db->insert('b_kunjungan',$arr);
+        $kunj_id = $this->db->insert_id();
+        return $kunj_id;
+    }
+
+    public function daftarpelpoli($no_rm,$dokter_id,$pasien_id,$kso_id,$tgl,$unit_id,$namadok,$hariini,$no_bill,$kunj_id,$antrian)
+    {
+        $tes = "INSERT INTO b_pelayanan ( no_antrian, 
+        jenis_kunjungan, pasien_id, kunjungan_id, jenis_layanan, unit_id, 
+        kso_id, kelas_id, tgl, dilayani, tgl_act, user_act, unit_id_asal,
+        dokter_id
+        )
+        VALUES (?,'1', ?, ?, '1', ?,?, '1', ?, '0', ?,  ?, '61',?)";
+        $data = $this->db->query($tes,array($antrian,$pasien_id,$kunj_id,$unit_id,$kso_id,$tgl,$hariini,$unit_id,$dokter_id));
+        $pel_id = $this->db->insert_id();
+        return $pel_id;
+    }
+
+    public function daftartinpoli($no_rm,$dokter_id,$pasien_id,$kso_id,$tgl,$unit_id,$namadok,$hariini,$no_bill,$kunj_id,$antrian,$pel_id,$biaya)
+	{
+        if($kso_id == '338'){
+            $karcis_id = '1';
+        }else{
+            $karcis_id = '11';
+        }
+         $arr = array(
+            'ms_tindakan_kelas_id' => $karcis_id,
+            'ms_tindakan_unit_id' => $unit_id,
+            'kunjungan_id' => $kunj_id,
+            'pelayanan_id' => $pel_id,
+            'kso_id' => $kso_id,
+            'tgl' => $tgl,
+            'qty' => '1',
+            'biaya' => $biaya,
+            'user_id' => $dokter_id,
+            'type_dokter' => '0',
+            'tgl_act' => $hariini,
+            'user_act' => $dokter_id,
+            'unit_act' => $unit_id,
+        );
+        $data = $this->db->insert('b_tindakan',$arr);
+        return $data;
     }
 
     public function inserttoken($token,$expires_in,$tglskrg)
