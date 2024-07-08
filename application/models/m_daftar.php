@@ -35,9 +35,21 @@ class m_daftar extends CI_Model {
             return $query->result();
     }
 
+    public function get_rm()
+    {
+        $query = $this->db->query("SELECT * FROM ms_pasien ORDER BY id DESC LIMIT 1");
+            return $query->result();
+    }
+
     public function cek_pasien($no_rm, $tgl_lahir)
     {
         $query = $this->db->query("SELECT * FROM ms_pasien WHERE no_rm = '$no_rm' AND DATE(tgl_lahir) = '$tgl_lahir'");
+            return $query->result();
+    }
+
+    public function cek_pasien_baru($nama_lengkap, $tgl_lahir)
+    {
+        $query = $this->db->query("SELECT * FROM ms_pasien WHERE nama = '$nama_lengkap' AND DATE(tgl_lahir) = '$tgl_lahir'");
             return $query->result();
     }
 
@@ -149,5 +161,41 @@ class m_daftar extends CI_Model {
     {
         $query = $this->db->query("SELECT * FROM soap_obj WHERE soap_id = '$soap_id'");
         return $query->result();
+    }
+
+    public function daftar_px_baru($no_rm,$nama_lengkap,$no_ktp,$nama_ortu,$jenis_kel,$agama,$goldar,$status_menikah,$no_bpjs,$tgl_lahir,$pend_terakhir,$pekerjaan,$alamat_ktp,$alamat_rt,$alamat_rw,$alamat_domisili,$provinsi,$kota,$kecamatan,$desa,$no_hp)
+    {
+        $hariini = date('Y-m-d H:i:s');
+        $tes = "INSERT INTO ms_pasien (no_rm, 
+        nama, no_ktp, no_bpjs, sex, agama, 
+        gol_darah, tgl_lahir, alamat, rt, rw, desa_id, kec_id,
+        kab_id,prop_id,telp,pendidikan_id,pekerjaan_id,nama_ortu,user_act,tgl_act,alamat_domisili,stt_nikah)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+        $data = $this->db->query($tes, array(
+            $no_rm,
+            $nama_lengkap,
+            $no_ktp,
+            $no_bpjs,
+            $jenis_kel,
+            $agama,
+            $goldar,
+            $tgl_lahir,
+            $alamat_ktp,
+            $alamat_rt,
+            $alamat_rw,
+            $desa,
+            $kecamatan,
+            $kota,
+            $provinsi,
+            $no_hp,
+            $pend_terakhir,
+            $pekerjaan,
+            $nama_ortu,
+            null,
+            $hariini,
+            $alamat_domisili,
+            $status_menikah
+        ));
+        return $data;
     }
 }

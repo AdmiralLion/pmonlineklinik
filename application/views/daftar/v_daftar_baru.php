@@ -36,6 +36,22 @@
     tr{
         height:30px;
     }
+      .float{
+        position:fixed;
+        width:60px;
+        height:60px;
+        bottom:40px;
+        right:40px;
+        background-color:#0C9;
+        color:#FFF;
+        border-radius:50px;
+        text-align:center;
+        box-shadow: 2px 2px 3px #999;
+    }
+
+    .my-float{
+        margin-top:22px;
+    }
 
   </style>
 <!-- Start GA -->
@@ -55,7 +71,7 @@
       <div class="container mt-5">
         <div class="row">            
           <div class="container">
-            <form action="" method="POST">
+            <!-- <form id="send_pxbaru" method="POST"> -->
             <table style="width:80%; height:650px;" align="center">
             <tr>
               <td colspan="6" style="background-color: aquamarine; text-align:center;">PENDAFTARAN PASIEN BARU</td>
@@ -77,8 +93,8 @@
                     <td style="width:150px;"> 
                     <select class="form-control" name="jenis_kel" id="jenis_kel">
                       <option value="">-- Pilih --</option>
-                      <option value="Laki-Laki">Laki-Laki</option>
-                      <option value="Perempuan">Perempuan</option>
+                      <option value="L">Laki-Laki</option>
+                      <option value="P">Perempuan</option>
                     </select>
                     </td>                
                 </tr>
@@ -89,7 +105,7 @@
                         <option value="">-- Pilih --</option>
                         <?php 
                         foreach($list_agama as $row): ?>
-                        <option value="<?= $row -> nama;?>"><?= $row -> nama;?></option>
+                        <option value="<?= $row -> id;?>"><?= $row -> nama;?></option>
                         <?php endforeach; ?>
                       </select>
                     </td>      
@@ -120,6 +136,12 @@
                     </td>        
                 </tr>
                 <tr>
+                    <td style="width:100px;">No Handphone : </td>
+                    <td style="width:150px;"> 
+                      <input class="form-control" type="text" name="no_hp" id="no_hp" placeholder="Nomor Telefon / HP">
+                    </td>        
+                </tr>
+                <tr>
                     <td style="width:100px;">Tanggal Lahir : </td>
                     <td style="width:150px;"> 
                       <input class="form-control" type="date" name="tgl_lahir" id="tgl_lahir" >
@@ -132,7 +154,7 @@
                         <option value="">-- Pilih --</option>
                         <?php 
                         foreach($list_pendidikan as $row): ?>
-                        <option value="<?= $row -> nama;?>"><?= $row -> nama;?></option>
+                        <option value="<?= $row -> id;?>"><?= $row -> nama;?></option>
                         <?php endforeach; ?>
                       </select>
                     </td>  
@@ -144,7 +166,7 @@
                         <option value="">-- Pilih --</option>
                         <?php 
                         foreach($list_pekerjaan as $row): ?>
-                        <option value="<?= $row -> nama;?>"><?= $row -> nama;?></option>
+                        <option value="<?= $row -> id;?>"><?= $row -> nama;?></option>
                         <?php endforeach; ?>
                       </select>
                     </td>             
@@ -204,8 +226,11 @@
                     </table>
                   </td>
                 </tr>
+            <a href="<?= base_url('landing');?>" class="float">
+              <i class="fa fa-home my-float"></i>
+            </a>
             </table>
-            </form>
+            <!-- </form> -->
             <div class="simple-footer">
             Made with <i class="fas fa-heart" style="color: red;"></i> NAVINC TECHNOLOGY 2024
             </div>
@@ -223,7 +248,8 @@
   <script src="assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
   <script src="assets/modules/moment.min.js"></script>
   <script src="assets/js/stisla.js"></script>
-  
+  <script src="<?php echo base_url();?>assets/modules/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+
   <!-- JS Libraies -->
 
   <!-- Page Specific JS File -->
@@ -233,8 +259,10 @@
   <script src="assets/js/custom.js"></script>
   <script>
   <?php 
-  // echo $JavaScriptTambahan; 
+  echo $JavaScriptTambahan; 
   ?>
+  </script>
+  <script>
   $(document).ready(function() {
       // Fetch wilayah data from backend (replace with your actual data retrieval method)
       var wilayahData = <?php echo json_encode($list_wilayah); ?>; // This should be your actual PHP array/object

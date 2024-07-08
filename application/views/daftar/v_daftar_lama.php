@@ -144,6 +144,23 @@
     justify-content: center;
     gap: 50px; /* Adjust as needed for spacing between buttons */
 }
+
+  .float{
+        position:fixed;
+        width:60px;
+        height:60px;
+        bottom:40px;
+        right:40px;
+        background-color:#0C9;
+        color:#FFF;
+        border-radius:50px;
+        text-align:center;
+        box-shadow: 2px 2px 3px #999;
+    }
+
+    .my-float{
+        margin-top:22px;
+    }
   </style>
 <!-- Start GA -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
@@ -192,6 +209,9 @@
               </div>
               </td>
             </tr>
+            <a href="<?= base_url('landing');?>" class="float">
+              <i class="fa fa-home my-float"></i>
+            </a>
             </table>
             <!-- </form> -->
             <div class="simple-footer">
