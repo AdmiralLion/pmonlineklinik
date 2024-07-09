@@ -144,10 +144,44 @@ $(document).ready(function() {
                     $.each(data3, function(i){
                         var kode_status = data3.kode_status;
                         var pesan_status = data3.pesan_status;
+                        var pasien_id = data3.pasien_id;
+                        var kunjungan_id = data3.kunjungan_id;
+                        var pelayanan_id = data3.pelayanan_id;
+
                         if(kode_status == '400'){
                             swal.fire("Error", pesan_status , "error");
                         }else{
-                            swal.fire("Data Ada", pesan_status, "success");
+                            swal.fire({
+                                title: "Berhasil",
+                                text: pesan_status,
+                                icon: "success",
+                                timer: 5000, // Show success message for 3 seconds
+                                timerProgressBar: true,
+                                showConfirmButton: false, // Hide "OK" button
+                                didOpen: () => {
+                                    Swal.showLoading();
+                                    const timer = Swal.getPopup().querySelector("b");
+                                    timerInterval = setInterval(() => {
+                                      timer.textContent = `${Swal.getTimerLeft()}`;
+                                    }, 100);
+                                  },
+                            });
+        
+                            // Set a timer to redirect after 3 seconds
+                            setTimeout(function () {
+                                // Replace this with your redirection logic or other action
+                                // sessionStorage.setItem('no_rm', 'no_rm');
+                                // sessionStorage.setItem('tgl_lahir', 'tgl_lahir');
+                                // window.location.href = "<?= base_url('daftar_lama');?>";
+                                var url = "<?= base_url('karcis/print');?>";
+                                var form = $('<form action="' + url + '" method="post">' +
+                                '<input type="text" name="pasien_id" value="' + pasien_id + '" />' +
+                                '<input type="text" name="kunjungan_id" value="' + kunjungan_id + '" />' +
+                                '<input type="text" name="pelayanan_id" value="' + pelayanan_id + '" />' +
+                                '</form>');
+                                $('body').append(form);
+                                form.submit();
+                            }, 5000); // 3000 milliseconds = 3 seconds   
                         }
                     });
                 }).fail(function (data) {

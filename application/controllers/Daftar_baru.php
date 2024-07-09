@@ -32,7 +32,6 @@ class Daftar_baru extends CI_Controller {
 
 	public function index()
 	{
-		
 		$data['user'] = '';
 		$data['list_agama'] = $this->m_daftar->getagama();
 		$data['list_pendidikan'] = $this->m_daftar->getpendidikan();

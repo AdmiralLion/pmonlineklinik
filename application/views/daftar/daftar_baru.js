@@ -104,25 +104,41 @@ $(document).ready(function() {
                             var no_rm = data3.no_rm;
                             var tgl_lahir = data3.tgl_lahir;
                             var pasien_id = data3.pasien_id;
-                            // console.log(kso);
+
                             if(kode_msgs == '400' || kode_msgs == '401'){
                                 swal.fire("Error", error_msgs , "error");
                             }else{
-                                swal.fire("Berhasil ", error_msgs, "success");
+                                // swal.fire("Berhasil ", error_msgs, "success");
                                 swal.fire({
-                                    title: "Pasien berhasil terdaftar",
+                                    title: "Berhasil",
                                     text: error_msgs,
                                     icon: "success",
-                                    timer: 3000, // Show success message for 3 seconds
-                                    showConfirmButton: false // Hide "OK" button
+                                    timer: 5000, // Show success message for 3 seconds
+                                    timerProgressBar: true,
+                                    showConfirmButton: false, // Hide "OK" button
+                                    didOpen: () => {
+                                        Swal.showLoading();
+                                        const timer = Swal.getPopup().querySelector("b");
+                                        timerInterval = setInterval(() => {
+                                          timer.textContent = `${Swal.getTimerLeft()}`;
+                                        }, 100);
+                                      },
                                 });
             
                                 // Set a timer to redirect after 3 seconds
                                 setTimeout(function () {
                                     // Replace this with your redirection logic or other action
-                                    window.location.href = "<?= base_url('redirect_path');?>";
-                                }, 3000); // 3000 milliseconds = 3 seconds
-                            }
+                                    // sessionStorage.setItem('no_rm', 'no_rm');
+                                    // sessionStorage.setItem('tgl_lahir', 'tgl_lahir');
+                                    // window.location.href = "<?= base_url('daftar_lama');?>";
+                                    var url = "<?= base_url('daftar_lama');?>";
+                                    var form = $('<form action="' + url + '" method="post">' +
+                                    '<input type="text" name="no_rmsend" value="' + no_rm + '" />' +
+                                    '<input type="text" name="tgl_lahirsend" value="' + tgl_lahir + '" />' +
+                                    '</form>');
+                                    $('body').append(form);
+                                    form.submit();
+                                }, 5000); // 3000 milliseconds = 3 seconds
                             }
                         });
                     }).fail(function (data) {
@@ -132,7 +148,27 @@ $(document).ready(function() {
                 }
             });
         }
-        
-        
     });
+
+    function post(path, parameters) {
+        var form = $('<form></form>');
+    
+        form.attr("method", "post");
+        form.attr("action", path);
+    
+        $.each(parameters, function(key, value) {
+            var field = $('<input></input>');
+    
+            field.attr("type", "hidden");
+            field.attr("name", key);
+            field.attr("value", value);
+    
+            form.append(field);
+        });
+    
+        // The form needs to be a part of the document in
+        // order for us to be able to submit it.
+        $(document.body).append(form);
+        form.submit();
+    }
 })

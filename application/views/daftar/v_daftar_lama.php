@@ -1,4 +1,8 @@
 
+<?php
+      $no_rmbaru = $pxbaru['no_rm'];
+      $tgl_lahirbaru = $pxbaru['tgl_lahir'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -189,10 +193,10 @@
               <td>
                 <div class="row">
                   <div class="col-md-4 mb-4">
-                    <input style="width:100%;" type="text" class="form-control" name="no_rm" id="no_rm" placeholder="Nomor RM" require>
+                    <input style="width:100%;" type="text" class="form-control" name="no_rm" id="no_rm" value="<?= $no_rmbaru;?>" placeholder="Nomor RM" require>
                   </div>
                   <div class="col-md-4 mb-4">
-                    <input type="date" style="width:200px;" class="form-control" name="tgl_lahir" id="tgl_lahir" require>
+                    <input type="date" style="width:200px;" class="form-control" value="<?= $tgl_lahirbaru;?>" name="tgl_lahir" id="tgl_lahir" require>
                   </div>
                   <div class="col-md-4 mb-4">
                     <button style="width:100%;" id="cek_rm" class="btn btn-info btn-icon">

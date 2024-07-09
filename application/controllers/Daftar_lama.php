@@ -29,8 +29,19 @@ class Daftar_lama extends CI_Controller {
 
 	public function index()
 	{
+		if($this->input->post('no_rmsend') != ''){
+			$no_rm = $this->input->post('no_rmsend');
+			$tgl_lahir = $this->input->post('tgl_lahirsend');
+		}else{
+			$no_rm = '';
+			$tgl_lahir = date('Y-m-d');
+		}
 
-		$data['user'] = '';
+	
+		$data['pxbaru'] = [
+			'no_rm' => $no_rm,
+			'tgl_lahir' => $tgl_lahir
+		];
 		$data['JavaScriptTambahan'] = $this->load->view('daftar/daftar_lama.js',$data,TRUE);
 		$this->load->view('daftar/v_daftar_lama.php',$data, get_class($this));
 	}
@@ -149,11 +160,18 @@ class Daftar_lama extends CI_Controller {
 			$status = [
 				'kode_status' => '201',
 				'pesan_status' => 'Daftar Berhasil Antrian Nomor ' .$antrian,
+				'pasien_id' => $pasien_id,
+				'kunjungan_id' => $kunj_id,
+				'pelayanan_id' => $pel_id
 			];
 		}else{
 			$status = [
 				'kode_status' => '400',
 				'pesan_status' => 'Sistem Eror Reload Halaman',
+				'pasien_id' => '-',
+				'kunjungan_id' => '-',
+				'pelayanan_id' => '-'
+
 			];
 		}
 		
