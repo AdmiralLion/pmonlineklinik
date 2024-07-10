@@ -27,6 +27,7 @@ class Daftar_baru extends CI_Controller {
         $this->db = $this->load->database('default', TRUE);
 		//  $this->db4 = $this->load->database('satset', TRUE);
 		 date_default_timezone_set('Asia/Jakarta');
+		 
 		
 	}
 

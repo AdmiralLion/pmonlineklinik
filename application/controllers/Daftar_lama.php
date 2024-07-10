@@ -92,6 +92,7 @@ class Daftar_lama extends CI_Controller {
 	public function get_dokter()
 	{
 		$hariini = date('Y-m-d');
+		$jamskrg = strtotime(date('H:i:s'));
 		$data1['test'] = $this->m_daftar->cek_dokter($hariini);	
 		foreach($data1['test'] as $row):
 			$id = $row -> id;
@@ -102,6 +103,12 @@ class Daftar_lama extends CI_Controller {
 			$jam_mulai = $row -> jam_mulai;
 			$jam_selesai = $row -> jam_selesai;
 			$indikator_jadwal = $row -> indikator_jadwal;
+			$jam_cek = strtotime($jam_selesai);
+			if($jam_cek > $jamskrg){
+				$jampraktek = 'Belum Praktek';
+			}else{
+				$jampraktek = 'Sudah Praktek';
+			}
 			$data1['cekantrian'] = $this -> m_daftar -> cek_antrian2($dokter_id,$hariini);
 			foreach($data1['cekantrian'] as $rows):
 				$antrian = $rows -> antrian;
@@ -116,7 +123,8 @@ class Daftar_lama extends CI_Controller {
 				'jam_selesai' => $jam_selesai,
 				'indikator_jadwal' => $indikator_jadwal,
 				'tgl' => $hariini,
-				'antrian' => $antrian
+				'antrian' => $antrian,
+				'cek_jam' => $jampraktek
 			];
 		endforeach;
 		echo json_encode($data);

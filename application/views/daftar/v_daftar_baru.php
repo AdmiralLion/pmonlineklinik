@@ -226,10 +226,10 @@
                     </table>
                   </td>
                 </tr>
+            </table>
             <a href="<?= base_url('landing');?>" class="float">
               <i class="fa fa-home my-float"></i>
             </a>
-            </table>
             <!-- </form> -->
             <div class="simple-footer">
             Made with <i class="fas fa-heart" style="color: red;"></i> NAVINC TECHNOLOGY 2024

@@ -90,6 +90,24 @@
     height: 300px; /* Set a fixed height for consistent size */
 }
 
+   /* Base styles for button */
+   .pil_dokter3 {
+    border: none;
+    background-color: #e74c3c;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px; /* Rounded corners */
+    overflow: hidden; /* Ensure contents stay within the button */
+    position: relative; /* Position for absolute child elements */
+    width: 200px; /* Set a fixed width for consistent size */
+    height: 300px; /* Set a fixed height for consistent size */
+}
+
 /* Style for button image */
 .button-image {
     position: absolute;
@@ -139,6 +157,10 @@
 
 /* Hover effect for button */
 .pil_dokter2:hover .button-content {
+    background-color: rgba(0, 0, 0, 0.9); /* Darken background on hover */
+}
+
+.pil_dokter3:hover .button-content {
     background-color: rgba(0, 0, 0, 0.9); /* Darken background on hover */
 }
 

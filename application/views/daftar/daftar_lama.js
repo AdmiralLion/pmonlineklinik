@@ -84,8 +84,10 @@ $(document).ready(function() {
                         var n =0;
                             var data = $.parseJSON(data);
                 $.each(data, function(i){
-                    if(data[i].indikator_jadwal == 'Tidak libur'){
+                    if(data[i].indikator_jadwal == 'Tidak libur' && data[i].cek_jam == 'Belum Praktek'){
                         var btndokter = '<div class="col-md-4 mb-3"> <button id="avail" class="pil_dokter" data="'+data[i].id+'" data-dokter="'+data[i].dokter_id+'"data-norm="'+no_rm+'"data-kso="'+kso+'"data-tgl="'+data[i].tgl+'"data-poli="'+data[i].nama_unit+'"data-namadok="'+data[i].nama_dokter+'"data-pasienid="'+pasien_id+'"data-unitid="'+data[i].unit_id+'"><div class="button-image"><img style="width:100px;" src="<?=base_url("assets/img/doctor.png");?>" alt="Image" /></div><div class="button-content"><div class="button-text">'+data[i].nama_dokter+' - '+ data[i].nama_unit+'<br> <br>'+data[i].jam_mulai+'-'+data[i].jam_selesai+'<br> Jumlah Pasien <br> '+data[i].antrian+'</div></div></button></div>';
+                    }else if(data[i].indikator_jadwal == 'Tidak libur' && data[i].cek_jam == 'Sudah Praktek'){
+                        var btndokter = '<div class="col-md-4 mb-3"> <button class="pil_dokter3" data="'+data[i].id+'" data-dokter="'+data[i].dokter_id+'"><div class="button-image"><img style="width:100px;" src="<?=base_url("assets/img/doctor.png");?>" alt="Image" /></div><div class="button-content"><div class="button-text">'+data[i].nama_dokter+' - '+ data[i].nama_unit+'<br> Selesai Praktek </div></div></button></div>';
                     }else{
                         var btndokter = '<div class="col-md-4 mb-3"> <button class="pil_dokter2" data="'+data[i].id+'" data-dokter="'+data[i].dokter_id+'"><div class="button-image"><img style="width:100px;" src="<?=base_url("assets/img/doctor.png");?>" alt="Image" /></div><div class="button-content"><div class="button-text">'+data[i].nama_dokter+' - '+ data[i].nama_unit+'<br> LIBUR </div></div></button></div>';
                     }
@@ -173,7 +175,7 @@ $(document).ready(function() {
                                 // sessionStorage.setItem('no_rm', 'no_rm');
                                 // sessionStorage.setItem('tgl_lahir', 'tgl_lahir');
                                 // window.location.href = "<?= base_url('daftar_lama');?>";
-                                var url = "<?= base_url('karcis/print');?>";
+                                var url = "<?= base_url('karcis');?>";
                                 var form = $('<form action="' + url + '" method="post">' +
                                 '<input type="text" name="pasien_id" value="' + pasien_id + '" />' +
                                 '<input type="text" name="kunjungan_id" value="' + kunjungan_id + '" />' +

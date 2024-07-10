@@ -33,17 +33,22 @@ class Karcis extends CI_Controller {
 		
 	}
 
-	public function print()
+	public function index()
 	{
 		// $id= $this->uri->segment(3);
-		$no_rm = $this->input->post('no_rm');
-		$pasien_id = $this->input->post('pasien_id');
-		$kunjungan_id = $this->input->post('kunjungan_id');
 		$pelayanan_id = $this->input->post('pelayanan_id');
+		if($pelayanan_id == ''){
+			// echo 'tres';
+			redirect('landing', 'location');
+		}else{
+			$no_rm = $this->input->post('no_rm');
+			$pasien_id = $this->input->post('pasien_id');
+			$kunjungan_id = $this->input->post('kunjungan_id');
+	
+			$data['result'] = $this->m_karcis->cetakhasil($no_rm,$pasien_id,$pelayanan_id);
+			$this->load->view('karcis/cetak_karcis', $data);
+		}
 
-
-		$data['result'] = $this->m_karcis->cetakhasil($no_rm,$pasien_id,$pelayanan_id);
-		$this->load->view('karcis/cetak_karcis', $data);
 	}
 	
 }

@@ -56,7 +56,6 @@
     .name-descripeion {
       font-family: sans-serif;
       position: relative;
-      top: 35%;
       width: 100%;
       z-index: 9999;
     }
@@ -106,6 +105,22 @@
       justify-content: center;
       align-items: center;
     }
+    .float{
+        position:fixed;
+        width:60px;
+        height:60px;
+        bottom:40px;
+        right:40px;
+        background-color:#0C9;
+        color:#FFF;
+        border-radius:50px;
+        text-align:center;
+        box-shadow: 2px 2px 3px #999;
+    }
+
+    .my-float{
+        margin-top:22px;
+    }
   </style>
 <!-- Start GA -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
@@ -125,7 +140,7 @@
         <div class="row">            
           <div class="container">
             <div class="container">
-              <div class="col-md-12">
+              <div class="col-md-12 mb-4">
                 <table style="width:100%">
                   <tr>
                     <td style="text-align:center; font-size: 30px;"><img style="width:10%;  height: auto;" src="<?= base_url('assets/img/logo-rs.jpg');?>" alt="logo-rs"> <span class="name-descripeion">PLACEHOLDER NAMA KLIEN </span></td>
@@ -133,40 +148,39 @@
                   </tr>
                 </table>
               </div>
-            </div>
+            </div><br>
             <div class="hover-box">
               <div class="row">
-                <div class="col-sm-12 col-md-6">
-                  <a class="dedcription-btn" href="<?= base_url('daftar_baru');?>">
-                    <span class="name-descripeion">Pendaftaran Pasien Baru</span>
-                  <div class="btn-icon">
-                    <i class="fas fa-user-plus"></i>              </div>
-                  </a>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                  <a class="dedcription-btn" href="<?= base_url('daftar_lama');?>">
-                    <span class="name-descripeion">Pendaftaran Pasien Lama</span>
-                  <div class="btn-icon heart">
-                    <i class="fas fa-heartbeat"></i>
+                <?php
+                  foreach($result as $row): 
+                  if($row -> indikator_jadwal == 'Tidak libur'){ ?>
+                    <div class="col-sm-12 col-md-6">
+                      <a class="dedcription-btn" href="#">
+                        <span class="name-descripeion"><?= $row -> nama_dokter;?></span><br>
+                        <span class="name-descripeion"><?= $row -> nama_unit;?></span><br>
+                        <span class="name-descripeion"><?= $row -> jam_mulai;?> - <?= $row -> jam_selesai;?></span><br>
+                      <div class="btn-icon book">
+                        <i class="fas fa-user-plus"></i>              </div>
+                      </a>
+                    </div>
+                  <?php }else{ ?>
+                    <div class="col-sm-12 col-md-6">
+                    <a class="dedcription-btn" href="#">
+                      <span class="name-descripeion"><?= $row -> nama_dokter;?></span><br>
+                      <span class="name-descripeion"><?= $row -> nama_unit;?></span><br>
+                      <span class="name-descripeion">TIDAK PRAKTEK</span><br>
+                    <div class="btn-icon book">
+                      <i class="fas fa-user-plus"></i>              </div>
+                    </a>
                   </div>
-                </a>
+                
+                <?php }
+                endforeach; ?>
+                  </div>
             </div>
-            <div class="col-sm-12 col-md-6">
-              <a class="dedcription-btn" href="<?= base_url('jadwal');?>" id="jadwal_dokter">
-                <span class="name-descripeion">Jadwal Dokter</span>
-            <div class="btn-icon book">
-              <i class="fas fa-book-reader"></i>          </div>
+            <a href="<?= base_url('landing');?>" class="float">
+              <i class="fa fa-home my-float"></i>
             </a>
-          </div>
-          <div class="col-sm-12 col-md-6">
-            <a class="dedcription-btn" href="#" id="kontak">
-              <span class="name-descripeion">Contact Us</span>
-              <div class="btn-icon brain">
-                <i class="fas fa-edit"></i>           </div>
-            </a>
-                </div>
-              </div>
-            </div>
             <div class="simple-footer">
             Made with <i class="fas fa-heart" style="color: red;"></i> NAVINC TECHNOLOGY 2024
             </div>
