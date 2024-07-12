@@ -159,8 +159,8 @@
             </a>
           </div>
           <div class="col-sm-12 col-md-6">
-            <a class="dedcription-btn" href="#" id="kontak">
-              <span class="name-descripeion">Contact Us</span>
+            <a class="dedcription-btn" href="<?= base_url('aboutus');?>" id="kontak">
+              <span class="name-descripeion">About Us</span>
               <div class="btn-icon brain">
                 <i class="fas fa-edit"></i>           </div>
             </a>
