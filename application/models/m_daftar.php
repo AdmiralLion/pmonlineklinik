@@ -1,5 +1,5 @@
 <?php
-class m_daftar extends CI_Model {
+class M_daftar extends CI_Model {
 
 
 
@@ -93,12 +93,13 @@ class m_daftar extends CI_Model {
         $arr = array(
             'no_billing' =>$no_bill,
             'pasien_id' => $pasien_id,
+            'asal_kunjungan' => 3,
             'jenis_layanan' => 1,
             'unit_id' => $unit_id,
             'tgl' => $tgl,
             'kso_id' => $kso_id,
             'tgl_act' => $hariini,
-            'user_act' => '61',
+            'user_act' => '68',
             'pm' => 1
         );
         $data = $this->db->insert('b_kunjungan',$arr);

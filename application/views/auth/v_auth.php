@@ -128,7 +128,7 @@
               <div class="col-md-12">
                 <table style="width:100%">
                   <tr>
-                    <td style="text-align:center; font-size: 30px;"><img style="width:10%;  height: auto;" src="<?= base_url('assets/img/logo-rs.jpg');?>" alt="logo-rs"> <span class="name-descripeion">PLACEHOLDER NAMA KLIEN </span></td>
+                    <td style="text-align:center; font-size: 30px;"><img style="width:10%;  height: auto;" src="<?= base_url('assets/img/logo-rs.jpg');?>" alt="logo-rs"> <span class="name-descripeion">dr.Diana Anggarani Sukotjo, Sp A </span></td>
                     <!-- <td style="width:100px;"></td> -->
                   </tr>
                 </table>
@@ -159,7 +159,7 @@
             </a>
           </div>
           <div class="col-sm-12 col-md-6">
-            <a class="dedcription-btn" href="<?= base_url('aboutus');?>" id="kontak">
+            <a class="dedcription-btn" href="#" id="kontak">
               <span class="name-descripeion">About Us</span>
               <div class="btn-icon brain">
                 <i class="fas fa-edit"></i>           </div>

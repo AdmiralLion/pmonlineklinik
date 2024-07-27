@@ -1,6 +1,6 @@
 <?php
 
-class m_karcis extends CI_Model
+class M_karcis extends CI_Model
 {
 	public function cetakhasil($norm,$idPas,$idPel)
 	{

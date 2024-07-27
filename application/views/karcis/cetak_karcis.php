@@ -41,7 +41,7 @@ if($kso_id == '1'){
     <table cellpadding="2" cellspacing="1" style="padding-right:5px; font-size:12px; border:2px solid; width:7cm; height:10cm;">
         <tr>
             <td colspan="4" style="text-transform:uppercase; font-size:16px; padding-bottom:10px; text-decoration:underline;" align="center">
-        Pendaftaran Online <br>  KLINIK PLACEHOLDER
+        Pendaftaran Online <br>  dr.Diana Anggarani Sukotjo, Sp A 
       </td>
         </tr>
     <tr>

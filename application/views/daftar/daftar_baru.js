@@ -33,7 +33,7 @@ $(document).ready(function() {
         var agama = $('#agama').val();
         var goldar = $('#goldar').val();
         var status_menikah = $('#status_menikah').val();
-        var no_bpjs = $('#no_bpjs').val();
+        var no_bpjs = '-';
         var no_hp = $('#no_hp').val();
         var tgl_lahir = $('#tgl_lahir').val();
         var pend_terakhir = $('#pend_terakhir').val();

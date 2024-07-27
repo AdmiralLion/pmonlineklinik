@@ -14,11 +14,9 @@ $(document).ready(function() {
             icon: 'warning',
             input: 'select',
             inputOptions: {
-                penj: 'Penjamin',
-                UMUM: 'UMUM',
-                BPJS: 'BPJS'
+                UMUM: 'UMUM'
             },
-            inputLabel: 'Pilih Penjamin UMUM / BPJS',
+            inputLabel: 'Pilih Penjamin UMUM',
             customClass: {
                 input: 'inline-flex',
                 inputLabel: 'inline-flex'

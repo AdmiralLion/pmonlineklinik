@@ -82,7 +82,8 @@ class Daftar_baru extends CI_Controller {
 				$temprm = $row -> no_rm;
 			endforeach;
 			$temprm++;
-			$no_rmbaru = '000'.$temprm;
+			$totalLength = 6;
+			$no_rmbaru = str_pad($temprm, $totalLength, '0', STR_PAD_LEFT);
 			$data1['daftarpx'] = $this->m_daftar->daftar_px_baru($no_rmbaru,$nama_lengkap,$no_ktp,$nama_ortu,$jenis_kel,$agama,$goldar,$status_menikah,$no_bpjs,$tgl_lahir,$pend_terakhir,$pekerjaan,$alamat_ktp,$alamat_rt,$alamat_rw,$alamat_domisili,$provinsi,$kota,$kecamatan,$desa,$no_hp);
 			if($data1['daftarpx'] == TRUE){
 				$data = [

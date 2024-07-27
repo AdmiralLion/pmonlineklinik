@@ -129,12 +129,12 @@
                       </select>
                     </td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td style="width:100px;">No BPJS : </td>
                     <td style="width:150px;"> 
                       <input class="form-control" type="text" name="no_bpjs" id="no_bpjs" placeholder="Nomor Keanggotaan BPJS">
                     </td>        
-                </tr>
+                </tr> -->
                 <tr>
                     <td style="width:100px;">No Handphone : </td>
                     <td style="width:150px;"> 
