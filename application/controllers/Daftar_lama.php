@@ -122,6 +122,8 @@ class Daftar_lama extends CI_Controller {
 				'jam_mulai' => $jam_mulai,
 				'jam_selesai' => $jam_selesai,
 				'indikator_jadwal' => $indikator_jadwal,
+				'indikator_hari' => $row -> indikator_hari,
+				'prakteksampai' => $row -> prakteksampai,
 				'tgl' => $hariini,
 				'antrian' => $antrian,
 				'cek_jam' => $jampraktek

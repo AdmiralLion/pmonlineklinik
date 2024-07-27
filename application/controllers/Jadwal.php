@@ -31,6 +31,7 @@ class Jadwal extends CI_Controller {
 	{
 		$hariini = date('Y-m-d');
 		$data['result'] = $this->m_daftar->cek_dokter($hariini);
+		// dd($data);
 		$this->load->view('jadwal/v_jadwal', $data);
 	}
 	
