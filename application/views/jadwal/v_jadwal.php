@@ -153,7 +153,7 @@
               <div class="row">
                 <?php
                   foreach($result as $row): 
-                  if($row -> indikator_jadwal == 'Tidak libur' AND $row -> prakteksampai <= $row -> indikator_hari){ ?>
+                  if($row -> indikator_jadwal == 'Tidak libur' AND $row -> prakteksampai >= $row -> indikator_hari){ ?>
                     <div class="col-sm-12 col-md-6">
                       <a class="dedcription-btn" href="#">
                         <span class="name-descripeion"><?= $row -> nama_dokter;?></span><br>

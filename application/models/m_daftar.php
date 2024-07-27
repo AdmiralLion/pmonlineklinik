@@ -62,7 +62,7 @@ class M_daftar extends CI_Model {
 
     public function cek_dokter($hariini)
     {
-        $query = $this->db->query("SELECT mjd.*, u.nama AS nama_dokter,u.id_unit as unit_id, mu.nama AS nama_unit, (CASE WHEN jld.id IS NULL THEN 'Tidak libur' ELSE 'Libur' END) AS indikator_jadwal,
+        $query = $this->db->query("SELECT mjd.*, u.nama_sift AS nama_dokter,u.id_unit as unit_id, mu.nama AS nama_unit, (CASE WHEN jld.id IS NULL THEN 'Tidak libur' ELSE 'Libur' END) AS indikator_jadwal,
         WEEKDAY(CURDATE())AS indikator_hari
         FROM ms_jadwal_dokter mjd JOIN users u ON mjd.dokter_id = u.id_user JOIN b_ms_unit mu ON mjd.unit_id = mu.id 
         LEFT JOIN jadwal_libur_dokter jld ON mjd.id = jld.ms_jadwal_id AND DATE(jld.tgl_libur) = '$hariini' ORDER BY id ASC");
